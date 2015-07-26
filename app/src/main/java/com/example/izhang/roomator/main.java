@@ -1,3 +1,10 @@
+/* Author: Ivan Zhang
+*  Company: NovusApp.com
+*  Application: Roomator
+*
+*  main.java: Main interface for the application, may need to make this into several fragment
+*
+ */
 package com.example.izhang.roomator;
 
 import android.support.v7.app.ActionBarActivity;
