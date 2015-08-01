@@ -7,15 +7,22 @@
     tools:context="com.example.izhang.roomator.group"
     android:background="#cccccc">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/logo"
+        android:src="@drawable/RoomatorLogo"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Group Page"
-        android:id="@+id/textView2"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="34dp"
-        android:autoText="true"
-        android:background="#cccccc" />
+        android:id="@+id/textView"
+        android:layout_alignBottom="@+id/logo"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
