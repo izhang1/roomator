@@ -22,62 +22,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/logo"
-        android:src="@drawable/RoomatorLogo"
+        android:src="@drawable/logo"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:id="@+id/emailBox"
-        android:layout_below="@+id/logo"
-        android:layout_centerHorizontal="true"
-        android:elevation="5dp"
-        android:hint="Email"
-        android:background="#ffffff"
-        android:paddingTop="10dp" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/passBox"
-        android:layout_below="@+id/emailBox"
-        android:layout_alignLeft="@+id/emailBox"
-        android:layout_alignStart="@+id/emailBox"
-        android:paddingTop="10dp"
-        android:background="#ffffff"
-        android:layout_marginTop="10dp"
-        android:elevation="5dp"
-        android:hint="Password" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:id="@+id/loginButton"
-        android:layout_marginTop="53dp"
-        android:layout_below="@+id/passBox"
-        android:layout_alignRight="@+id/passBox"
-        android:layout_alignEnd="@+id/passBox"
-        android:layout_alignLeft="@+id/passBox"
-        android:layout_alignStart="@+id/passBox"
-        android:background="@color/lightgrey" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Register"
-        android:id="@+id/registerButton"
-        android:layout_below="@+id/loginButton"
-        android:layout_alignLeft="@+id/loginButton"
-        android:layout_alignStart="@+id/loginButton"
-        android:layout_alignRight="@+id/loginButton"
-        android:layout_alignEnd="@+id/loginButton"
-        android:background="@color/lightgrey"
-        android:layout_marginTop="10dp" />
 </RelativeLayout>
