@@ -7,6 +7,7 @@
  */
 package com.example.izhang.roomator;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,6 +20,10 @@ public class loading extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
+
+        // Send the user immediately to group page if they have already logged in.
+        Intent loginIntent = new Intent(getApplicationContext(), login.class);
+        startActivity(loginIntent);
     }
 
     @Override
