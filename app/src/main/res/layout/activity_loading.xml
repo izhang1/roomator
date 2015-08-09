@@ -21,6 +21,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/textViewLoading"
         android:layout_below="@+id/logo"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:text="No Internet Connection"
+        android:textColor="#ffffff"
+        android:visibility="invisible" />
 
 </RelativeLayout>

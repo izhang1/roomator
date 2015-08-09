@@ -21,7 +21,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/textViewLoading"
         android:layout_below="@+id/logo"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:text="No Internet Connection"
+        android:textColor="#ffffff"
+        android:visibility="invisible" />
 
 </RelativeLayout>
 <!-- From: file:/Users/izhang/Desktop/Programming%20Work/roomator/app/src/main/res/layout/activity_loading.xml -->
