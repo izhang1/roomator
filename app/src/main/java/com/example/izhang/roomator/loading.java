@@ -35,7 +35,7 @@ public class loading extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
         Firebase.setAndroidContext(getApplicationContext());
-
+        isNetworkAvailable();
     }
 
     // Network method to check if there is connetion to internet or not
