@@ -7,10 +7,13 @@
  */
 package com.example.izhang.roomator;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 
 public class login extends ActionBarActivity {
@@ -19,6 +22,15 @@ public class login extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        Button registerButton = (Button)findViewById(R.id.regButton);
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent regIntent = new Intent(getApplicationContext(), register.class);
+                startActivity(regIntent);
+            }
+        });
     }
 
     @Override
