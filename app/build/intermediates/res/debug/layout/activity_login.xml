@@ -40,7 +40,8 @@
         android:elevation="5dp"
         android:hint="Email"
         android:paddingTop="10dp"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:paddingLeft="10dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -55,13 +56,14 @@
         android:layout_alignStart="@+id/emailBox"
         android:hint="Password"
         android:layout_marginTop="10dp"
-        android:paddingTop="10dp" />
+        android:paddingTop="10dp"
+        android:paddingLeft="10dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login"
-        android:id="@+id/Login"
+        android:id="@+id/loginButton"
         android:layout_below="@+id/passBox"
         android:layout_marginTop="36dp"
         android:layout_alignLeft="@+id/passBox"
@@ -74,11 +76,11 @@
         android:layout_height="wrap_content"
         android:text="Register"
         android:id="@+id/regButton"
-        android:layout_below="@+id/Login"
-        android:layout_alignLeft="@+id/Login"
-        android:layout_alignStart="@+id/Login"
-        android:layout_alignRight="@+id/Login"
-        android:layout_alignEnd="@+id/Login" />
+        android:layout_below="@+id/loginButton"
+        android:layout_alignLeft="@+id/loginButton"
+        android:layout_alignStart="@+id/loginButton"
+        android:layout_alignRight="@+id/loginButton"
+        android:layout_alignEnd="@+id/loginButton" />
 
 </RelativeLayout>
 <!-- From: file:/Users/izhang/Desktop/Programming%20Work/roomator/app/src/main/res/layout/activity_login.xml -->

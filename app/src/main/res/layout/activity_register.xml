@@ -28,4 +28,81 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/emailBox"
+        android:background="#ffffff"
+        android:elevation="5dp"
+        android:hint="Email"
+        android:paddingTop="10dp"
+        android:textAlignment="center"
+        android:paddingLeft="10dp"
+        android:layout_below="@+id/logo"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/usernameBox"
+        android:background="#ffffff"
+        android:elevation="5dp"
+        android:hint="Username"
+        android:paddingTop="10dp"
+        android:textAlignment="center"
+        android:paddingLeft="10dp"
+        android:layout_below="@+id/emailBox"
+        android:layout_alignLeft="@+id/emailBox"
+        android:layout_alignStart="@+id/emailBox"
+        android:layout_marginTop="10dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/nameBox"
+        android:background="#ffffff"
+        android:elevation="5dp"
+        android:hint="Full Name(Ivan Zhang)"
+        android:paddingTop="10dp"
+        android:textAlignment="center"
+        android:paddingLeft="10dp"
+        android:layout_below="@+id/usernameBox"
+        android:layout_alignLeft="@+id/usernameBox"
+        android:layout_alignStart="@+id/usernameBox"
+        android:layout_marginTop="10dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/passBox"
+        android:layout_below="@+id/nameBox"
+        android:layout_alignLeft="@+id/nameBox"
+        android:layout_alignStart="@+id/nameBox"
+        android:background="#ffffff"
+        android:paddingTop="10dp"
+        android:layout_marginTop="10dp"
+        android:hint="Password"
+        android:paddingLeft="10dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:id="@+id/regButton"
+        android:layout_below="@+id/passBox"
+        android:layout_marginTop="42dp"
+        android:layout_alignLeft="@+id/passBox"
+        android:layout_alignStart="@+id/passBox"
+        android:layout_alignRight="@+id/passBox"
+        android:layout_alignEnd="@+id/passBox" />
+
 </RelativeLayout>
