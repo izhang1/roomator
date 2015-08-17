@@ -115,8 +115,8 @@ public class register extends Activity {
                                 myFirebaseRef.child("account").child(strChildCount).child("moneycount").setValue(0);
                                 myFirebaseRef.child("account").child(strChildCount).child("startdate").setValue(cal.getTime().toString());
                                 myFirebaseRef.child("didlogin").child(android_id).setValue(childCount);
-                                Intent mainIntent = new Intent(getApplicationContext(), main.class);
-                                startActivity(mainIntent);
+                                Intent naviIntent = new Intent(getApplicationContext(), navi.class);
+                                startActivity(naviIntent);
                                 finish();
 
                             } else {

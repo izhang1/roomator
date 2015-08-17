@@ -57,8 +57,8 @@ public class loading extends Activity {
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.child(android_id).exists()) {
                         Toast.makeText(getApplicationContext(), "You are all set to go.", Toast.LENGTH_LONG).show();
-                        Intent mainIntent = new Intent(getApplicationContext(), main.class);
-                        startActivity(mainIntent);
+                        Intent naviIntent = new Intent(getApplicationContext(), navi.class);
+                        startActivity(naviIntent);
                         finish();
                     } else {
                         Intent loginIntent = new Intent(getApplicationContext(), login.class);

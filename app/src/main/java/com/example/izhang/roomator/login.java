@@ -106,8 +106,8 @@ public class login extends Activity {
                                     if(dbPass.equals(encryptedPass)) {
                                         Log.v("login", "Login and password succeeded " + i);
                                         myFirebaseRef.child("didlogin").child(android_id).setValue(i);
-                                        Intent mainIntent = new Intent(getApplicationContext(), main.class);
-                                        startActivity(mainIntent);
+                                        Intent naviIntent = new Intent(getApplicationContext(), navi.class);
+                                        startActivity(naviIntent);
                                         myFirebaseRef.removeEventListener(loginListener);
                                         finish();
                                     }
