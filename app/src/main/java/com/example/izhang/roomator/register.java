@@ -112,7 +112,6 @@ public class register extends Activity {
 
                                 myFirebaseRef.child("account").child(strChildCount).child("password").setValue(encryptedPass);
                                 myFirebaseRef.child("account").child(strChildCount).child("fullname").setValue(fullnameBox.getText().toString());
-                                myFirebaseRef.child("account").child(strChildCount).child("moneycount").setValue(0);
                                 myFirebaseRef.child("account").child(strChildCount).child("startdate").setValue(cal.getTime().toString());
                                 myFirebaseRef.child("didlogin").child(android_id).setValue(childCount);
                                 Intent naviIntent = new Intent(getApplicationContext(), navi.class);
