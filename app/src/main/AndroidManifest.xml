@@ -32,12 +32,12 @@
             android:label="@string/title_activity_register" >
         </activity>
         <activity
-            android:name=".group"
+            android:name=".mainFrag_group"
             android:label="@string/title_activity_group" >
         </activity>
         <activity
             android:name=".navi"
-            android:label="@string/title_activity_navi" >
+            android:label="@string/app_name" >
         </activity>
     </application>
 

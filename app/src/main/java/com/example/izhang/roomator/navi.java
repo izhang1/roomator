@@ -2,6 +2,7 @@ package com.example.izhang.roomator;
 
 import android.app.Activity;
 import android.net.Uri;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -19,6 +20,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.firebase.client.ChildEventListener;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+
 public class navi extends AppCompatActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks, mainFrag.OnFragmentInteractionListener {
 
@@ -32,11 +39,35 @@ public class navi extends AppCompatActivity
      */
     private CharSequence mTitle;
 
+    boolean hasGroup;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navi);
+        Firebase.setAndroidContext(getApplicationContext());
+        final Firebase myFirebaseRef = new Firebase("https://roomator.firebaseio.com/");
 
+        // Get android_id
+        final String android_id = Settings.Secure.getString(getApplicationContext().getContentResolver(),
+                Settings.Secure.ANDROID_ID);
+
+        myFirebaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String account_id = dataSnapshot.child("android_id").getValue().toString();
+                if(dataSnapshot.child("account").child(android_id).hasChild("group")){
+                    hasGroup = true;
+                }else{
+                    hasGroup = false;
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
@@ -53,13 +84,18 @@ public class navi extends AppCompatActivity
        android.app.Fragment fragment;
         android.app.FragmentManager fragmentManager = getFragmentManager(); // For AppCompat use getSupportFragmentManager
         switch (position) {
-            default:
             case 0:
-                fragment = new mainFrag();
+                if(hasGroup){
+                    fragment = new mainFrag();
+                }else{
+                    fragment = new mainFrag();
+                }
                 break;
             case 1:
                 fragment = new mainFrag();
                 break;
+            default: fragment = new mainFrag();
+
         }
         fragmentManager.beginTransaction()
                 .replace(R.id.container, fragment)

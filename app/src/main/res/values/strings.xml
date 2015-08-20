@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">roomator</string>
+    <string name="app_name">Roomator</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -7,11 +7,12 @@
     <string name="title_activity_loading">loading</string>
     <string name="title_activity_register">register</string>
     <string name="title_activity_group">group</string>
-    <string name="title_activity_navi">navi</string>
 
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
+    <string name="title_section1">Main</string>
+    <string name="title_section2">Chores</string>
+    <string name="title_section3">Bills</string>
+    <string name="title_section4">Messages</string>
+
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

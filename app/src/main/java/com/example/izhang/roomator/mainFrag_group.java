@@ -14,7 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class group extends ActionBarActivity {
+public class mainFrag_group extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

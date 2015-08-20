@@ -1742,11 +1742,10 @@ containing a value of this type.
         public static final int title_activity_group=0x7f060019;
         public static final int title_activity_loading=0x7f06001a;
         public static final int title_activity_login=0x7f06001b;
-        public static final int title_activity_navi=0x7f06001c;
-        public static final int title_activity_register=0x7f06001d;
-        public static final int title_section1=0x7f06001e;
-        public static final int title_section2=0x7f06001f;
-        public static final int title_section3=0x7f060020;
+        public static final int title_activity_register=0x7f06001c;
+        public static final int title_section1=0x7f06001d;
+        public static final int title_section2=0x7f06001e;
+        public static final int title_section3=0x7f06001f;
     }
     public static final class style {
         public static final int AlertDialog_AppCompat=0x7f080073;
