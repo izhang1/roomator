@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Whats Up"
-        android:id="@+id/button"
+        android:id="@+id/whatUpButton_main"
         android:layout_gravity="center_horizontal|top" />
 
 </FrameLayout>

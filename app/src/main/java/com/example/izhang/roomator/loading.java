@@ -52,12 +52,16 @@ public class loading extends Activity {
             final String android_id = Settings.Secure.getString(getApplicationContext().getContentResolver(),
                     Settings.Secure.ANDROID_ID);
 
-            myFirebaseRef.child("didlogin").addValueEventListener(new ValueEventListener() {
+            myFirebaseRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.child(android_id).exists()) {
-                        Toast.makeText(getApplicationContext(), "You are all set to go.", Toast.LENGTH_LONG).show();
-                        Intent naviIntent = new Intent(getApplicationContext(), navi.class);
+                    if (dataSnapshot.child("didlogin").child(android_id).exists()) {
+                        String account_id = dataSnapshot.child("didlogin").child(android_id).getValue().toString();
+                        Intent naviIntent = dataSnapshot.child("account").child(account_id).hasChild("group") ? new Intent(getApplicationContext(), navi.class) : new Intent(getApplicationContext(), newGroup.class);
+                        if(dataSnapshot.child("account").child(account_id).hasChild("group")){
+                            Log.d("loading", "CHILD EXISTS");
+                        }
+                        Log.d("loading", "Started Activity");
                         startActivity(naviIntent);
                         finish();
                     } else {

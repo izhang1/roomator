@@ -27,7 +27,7 @@ import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
 public class navi extends AppCompatActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks, mainFrag.OnFragmentInteractionListener {
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks, mainFrag.OnFragmentInteractionListener, chores.OnFragmentInteractionListener {
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -55,8 +55,8 @@ public class navi extends AppCompatActivity
         myFirebaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String account_id = dataSnapshot.child("android_id").getValue().toString();
-                if(dataSnapshot.child("account").child(android_id).hasChild("group")){
+                String account_id = dataSnapshot.child("didlogin").child(android_id).getValue().toString();
+                if(dataSnapshot.child("account").child(account_id).hasChild("group")){
                     hasGroup = true;
                 }else{
                     hasGroup = false;
@@ -88,7 +88,7 @@ public class navi extends AppCompatActivity
                 if(hasGroup){
                     fragment = new mainFrag();
                 }else{
-                    fragment = new mainFrag();
+                    fragment = new chores();
                 }
                 break;
             case 1:

@@ -80,9 +80,6 @@ public class login extends Activity {
                                 if (dataSnapshot.child(in).child("password").getValue() != null) {
                                     dbPass = dataSnapshot.child(in).child("password").getValue().toString();
                                 }
-                                //Log.v("Event", "Account ID: "+ in);
-                                //Log.v("Event", "Email: "+ dbEmail);
-                                //Log.v("Event", "Pass: "+ dbPass);
 
                                 if (dbEmail.equals(emailBox.getText().toString())) {
                                     String encryptedPass = "";
@@ -106,10 +103,20 @@ public class login extends Activity {
                                     if(dbPass.equals(encryptedPass)) {
                                         Log.v("login", "Login and password succeeded " + i);
                                         myFirebaseRef.child("didlogin").child(android_id).setValue(i);
-                                        Intent naviIntent = new Intent(getApplicationContext(), navi.class);
-                                        startActivity(naviIntent);
-                                        myFirebaseRef.removeEventListener(loginListener);
-                                        finish();
+                                        myFirebaseRef.child("account").child(Integer.toString(i)).addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                                Intent naviIntent = dataSnapshot.hasChild("group") ? new Intent(getApplicationContext(), navi.class) : new Intent(getApplicationContext(), newGroup.class);
+                                                startActivity(naviIntent);
+                                                myFirebaseRef.removeEventListener(loginListener);
+                                                finish();
+                                            }
+
+                                            public void onCancelled(FirebaseError error) {
+
+                                            }
+                                        });
+
                                     }
                                 } else {
                                     Log.v("Event", "Email Box: "+emailBox.getText().toString());
@@ -130,7 +137,6 @@ public class login extends Activity {
                 }
             }
         });
-
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
