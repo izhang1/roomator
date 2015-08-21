@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -19,9 +20,14 @@ public class newGroup extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Removes Header
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_group);
         Firebase.setAndroidContext(getApplicationContext());
+
+
 
         // Setup Firebase
         final Firebase myFirebaseRef = new Firebase("https://roomator.firebaseio.com/");
@@ -30,8 +36,8 @@ public class newGroup extends Activity {
         final String android_id = Settings.Secure.getString(getApplicationContext().getContentResolver(),
                 Settings.Secure.ANDROID_ID);
 
-        Button joinGroupButton = (Button) this.findViewById(R.id.joinGroupButton);
-        Button newGroupButton = (Button) this.findViewById(R.id.addGroupButton);
+        final Button joinGroupButton = (Button) this.findViewById(R.id.joinGroupButton);
+        final Button newGroupButton = (Button) this.findViewById(R.id.addGroupButton);
         EditText newGroupName = (EditText) this.findViewById(R.id.groupName);
         final EditText joinGroupId = (EditText) this.findViewById(R.id.groupID);
 
@@ -39,6 +45,7 @@ public class newGroup extends Activity {
         joinGroupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                joinGroupButton.setElevation(8);
                 String groupId = joinGroupId.toString();
                 myFirebaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -58,6 +65,7 @@ public class newGroup extends Activity {
         newGroupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                newGroupButton.setElevation(8);
 
             }
         });
