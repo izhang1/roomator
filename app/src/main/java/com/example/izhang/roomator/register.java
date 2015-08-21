@@ -38,7 +38,7 @@ public class register extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         // Removes Header
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 

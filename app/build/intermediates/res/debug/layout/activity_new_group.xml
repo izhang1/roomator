@@ -39,7 +39,8 @@
         android:layout_alignStart="@+id/groupName"
         android:layout_alignRight="@+id/groupName"
         android:layout_alignEnd="@+id/groupName"
-        android:elevation="2dp" />
+        android:elevation="2dp"
+        android:textColor="@color/accent" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -58,7 +59,7 @@
         android:layout_alignBottom="@+id/imageView"
         android:layout_centerHorizontal="true"
         android:textSize="24dp"
-        android:textColor="@color/text" />
+        android:textColor="@color/accent" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -69,7 +70,7 @@
         android:layout_centerHorizontal="true"
         android:textSize="24dp"
         android:layout_marginTop="15dp"
-        android:textColor="@color/text" />
+        android:textColor="@color/accent" />
 
     <EditText
         android:textAppearance="?android:attr/textAppearanceMedium"
