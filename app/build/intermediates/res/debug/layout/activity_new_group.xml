@@ -53,25 +53,26 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Group Name"
         android:id="@+id/groupNameText"
         android:layout_alignBottom="@+id/imageView"
         android:layout_centerHorizontal="true"
-        android:textSize="24dp" />
+        android:textSize="24dp"
+        android:textColor="@color/text" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Group ID"
         android:id="@+id/textView4"
         android:layout_below="@+id/addGroupButton"
         android:layout_centerHorizontal="true"
         android:textSize="24dp"
-        android:layout_marginTop="15dp" />
+        android:layout_marginTop="15dp"
+        android:textColor="@color/text" />
 
     <EditText
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
