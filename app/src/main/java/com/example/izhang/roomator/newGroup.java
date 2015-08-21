@@ -10,7 +10,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 public class newGroup extends Activity {
 
@@ -30,13 +33,24 @@ public class newGroup extends Activity {
         Button joinGroupButton = (Button) this.findViewById(R.id.joinGroupButton);
         Button newGroupButton = (Button) this.findViewById(R.id.addGroupButton);
         EditText newGroupName = (EditText) this.findViewById(R.id.groupName);
-        EditText joinGroupId = (EditText) this.findViewById(R.id.groupID);
+        final EditText joinGroupId = (EditText) this.findViewById(R.id.groupID);
 
         //todo: When this button is clicked, verify group with joinGroupId. If there, add that group to the user's account. New activity to navi.
         joinGroupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String groupId = joinGroupId.toString();
+                myFirebaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
 
+                    }
+
+                    @Override
+                    public void onCancelled(FirebaseError firebaseError) {
+
+                    }
+                });
             }
         });
 
