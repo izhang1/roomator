@@ -42,7 +42,7 @@ public class login extends Activity {
         setContentView(R.layout.activity_login);
 
         Button registerButton = (Button)findViewById(R.id.regButton);
-        Button loginButton = (Button)findViewById(R.id.loginButton);
+        final Button loginButton = (Button)findViewById(R.id.loginButton);
         final EditText emailBox = (EditText)findViewById(R.id.emailBox);
         final EditText passwordBox = (EditText)findViewById(R.id.passBox);
 
@@ -55,6 +55,9 @@ public class login extends Activity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Set elevation after clicking
+                loginButton.setElevation(8);
+
                 // Initial check to see if there are values in the text boxes
                 if (emailBox.getText().toString().matches("")) {
                     Toast.makeText(getApplicationContext(), "Please enter a valid email", Toast.LENGTH_LONG).show();
