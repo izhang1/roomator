@@ -24,8 +24,10 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
         android:hint="Group Name"
-        android:text="Group Name"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="5dp"
+        android:textColor="@color/primary_dark"
+        android:textColorHint="@color/primary_dark"
+        android:textSize="24dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -87,7 +89,10 @@
         android:layout_below="@+id/textView4"
         android:layout_alignParentStart="true"
         android:layout_alignEnd="@+id/joinGroupButton"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="5dp"
+        android:textColor="@color/primary_dark"
+        android:textColorHint="@color/primary_dark"
+        android:textSize="24dp" />
 
     <Button
         android:layout_width="wrap_content"

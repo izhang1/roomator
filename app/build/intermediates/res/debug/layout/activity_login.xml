@@ -35,13 +35,14 @@
         android:ems="10"
         android:id="@+id/emailBox"
         android:layout_below="@+id/logo"
-        android:layout_centerHorizontal="true"
         android:background="#ffffff"
-        android:elevation="5dp"
+        android:elevation="2dp"
         android:hint="Email"
-        android:paddingTop="16dp"
+        android:paddingTop="15dp"
         android:textAlignment="center"
-        android:paddingLeft="10dp" />
+        android:paddingLeft="10dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -49,15 +50,16 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/passBox"
-        android:elevation="5dp"
+        android:elevation="2dp"
         android:background="#ffffff"
         android:layout_below="@+id/emailBox"
         android:layout_alignLeft="@+id/emailBox"
         android:layout_alignStart="@+id/emailBox"
         android:hint="Password"
         android:layout_marginTop="10dp"
-        android:paddingTop="16dp"
-        android:paddingLeft="10dp" />
+        android:paddingTop="15dp"
+        android:paddingLeft="10dp"
+        android:layout_alignEnd="@+id/emailBox" />
 
     <Button
         android:layout_width="wrap_content"
@@ -69,7 +71,8 @@
         android:layout_alignLeft="@+id/passBox"
         android:layout_alignStart="@+id/passBox"
         android:layout_alignRight="@+id/passBox"
-        android:layout_alignEnd="@+id/passBox" />
+        android:layout_alignEnd="@+id/passBox"
+        android:elevation="2dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -80,7 +83,8 @@
         android:layout_alignLeft="@+id/loginButton"
         android:layout_alignStart="@+id/loginButton"
         android:layout_alignRight="@+id/loginButton"
-        android:layout_alignEnd="@+id/loginButton" />
+        android:layout_alignEnd="@+id/loginButton"
+        android:elevation="2dp" />
 
 </RelativeLayout>
 <!-- From: file:/Users/izhang/Desktop/Programming%20Work/roomator/app/src/main/res/layout/activity_login.xml -->

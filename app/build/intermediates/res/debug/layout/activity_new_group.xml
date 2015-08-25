@@ -24,23 +24,24 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
         android:hint="Group Name"
-        android:text="Group Name"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="5dp"
+        android:textColor="@color/primary_dark"
+        android:textColorHint="@color/primary_dark"
+        android:textSize="24dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add Group"
         android:id="@+id/addGroupButton"
-        android:paddingTop="10dp"
+        android:paddingTop="15dp"
         android:layout_below="@+id/groupName"
         android:layout_marginTop="15dp"
         android:layout_alignLeft="@+id/groupName"
         android:layout_alignStart="@+id/groupName"
         android:layout_alignRight="@+id/groupName"
         android:layout_alignEnd="@+id/groupName"
-        android:elevation="2dp"
-        android:textColor="@color/accent" />
+        android:elevation="2dp" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -59,7 +60,7 @@
         android:layout_alignBottom="@+id/imageView"
         android:layout_centerHorizontal="true"
         android:textSize="24dp"
-        android:textColor="@color/accent" />
+        android:textColor="@color/text" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -70,7 +71,7 @@
         android:layout_centerHorizontal="true"
         android:textSize="24dp"
         android:layout_marginTop="15dp"
-        android:textColor="@color/accent" />
+        android:textColor="@color/text" />
 
     <EditText
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -88,14 +89,17 @@
         android:layout_below="@+id/textView4"
         android:layout_alignParentStart="true"
         android:layout_alignEnd="@+id/joinGroupButton"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="5dp"
+        android:textColor="@color/primary_dark"
+        android:textColorHint="@color/primary_dark"
+        android:textSize="24dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Join Group"
         android:id="@+id/joinGroupButton"
-        android:paddingTop="10dp"
+        android:paddingTop="15dp"
         android:elevation="2dp"
         android:layout_marginTop="15dp"
         android:layout_alignParentEnd="true"

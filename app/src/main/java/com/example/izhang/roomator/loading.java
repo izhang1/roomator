@@ -31,6 +31,7 @@ import com.firebase.client.ValueEventListener;
 
 public class loading extends Activity {
 
+    ValueEventListener eventListener = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Removes Header
@@ -56,7 +57,7 @@ public class loading extends Activity {
             final String android_id = Settings.Secure.getString(getApplicationContext().getContentResolver(),
                     Settings.Secure.ANDROID_ID);
 
-            myFirebaseRef.addValueEventListener(new ValueEventListener() {
+            myFirebaseRef.addValueEventListener(eventListener = new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.child("didlogin").child(android_id).exists()) {
@@ -66,9 +67,12 @@ public class loading extends Activity {
                             Log.d("loading", "CHILD EXISTS");
                         }
                         Log.d("loading", "Started Activity");
+
+                        myFirebaseRef.removeEventListener(eventListener);
                         startActivity(naviIntent);
                         finish();
                     } else {
+                        myFirebaseRef.removeEventListener(eventListener);
                         Intent loginIntent = new Intent(getApplicationContext(), login.class);
                         startActivity(loginIntent);
                         finish();

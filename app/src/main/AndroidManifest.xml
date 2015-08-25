@@ -41,7 +41,10 @@
         </activity>
         <activity
             android:name=".newGroup"
-            android:label="@string/title_activity_new_group" >
+            android:label="@string/title_activity_new_group"
+            android:hardwareAccelerated="false"
+            android:windowSoftInputMode="adjustPan"
+            >
         </activity>
     </application>
 

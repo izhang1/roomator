@@ -45,6 +45,8 @@ public class navi extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navi);
+
+        //Setup Firebase
         Firebase.setAndroidContext(getApplicationContext());
         final Firebase myFirebaseRef = new Firebase("https://roomator.firebaseio.com/");
 
