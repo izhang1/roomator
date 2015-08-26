@@ -1,6 +1,7 @@
 package com.example.izhang.roomator;
 
 import android.app.Activity;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
@@ -120,6 +121,8 @@ public class navi extends AppCompatActivity
 
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
+        ColorDrawable cd = new ColorDrawable(0xFF666666);
+        actionBar.setBackgroundDrawable(cd);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
