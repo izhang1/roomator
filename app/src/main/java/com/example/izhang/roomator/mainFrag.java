@@ -83,9 +83,14 @@ public class mainFrag extends Fragment {
                 String userId;
                 userId = dataSnapshot.child("didlogin").child(android_id).getValue().toString();
                 if(dataSnapshot.child("account").child(userId).hasChild("group")){
+                    String groupId = dataSnapshot.child("account").child(userId).child("group").getValue().toString();
+                    String groupName = dataSnapshot.child("group").child(groupId).getValue().toString();
 
+                    final TextView mainTitle = (TextView) view.findViewById(R.id.mainTitleView);
+                    mainTitle.setText("Welcome " + mainTitle);
+                    Toast.makeText(getActivity(), "Welcome to " + groupName, Toast.LENGTH_LONG).show();
                 }else{
-
+                    Toast.makeText(getActivity(), "Please join a group!", Toast.LENGTH_LONG).show();
                 }
             }
 
