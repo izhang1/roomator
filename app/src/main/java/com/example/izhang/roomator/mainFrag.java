@@ -4,11 +4,18 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 
 /**
@@ -29,6 +36,8 @@ public class mainFrag extends Fragment {
     private String mParam1;
     private String mParam2;
     View view;
+
+    Firebase myFirebaseRef;
 
     private OnFragmentInteractionListener mListener;
 
@@ -54,7 +63,8 @@ public class mainFrag extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Firebase.setAndroidContext(getActivity());
+        myFirebaseRef = new Firebase("https://roomator.firebaseio.com/");
     }
 
     @Override
@@ -62,13 +72,29 @@ public class mainFrag extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_main, container, false);
-        final Button whatUpButton = (Button) view.findViewById(R.id.whatUpButton_main);
-        whatUpButton.setOnClickListener(new View.OnClickListener() {
+
+        // Get android_id
+        final String android_id = Settings.Secure.getString(getActivity().getContentResolver(),
+                Settings.Secure.ANDROID_ID);
+
+        myFirebaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity().getApplicationContext(), "Ello", Toast.LENGTH_SHORT).show();
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String userId;
+                userId = dataSnapshot.child("didlogin").child(android_id).getValue().toString();
+                if(dataSnapshot.child("account").child(userId).hasChild("group")){
+
+                }else{
+
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
             }
         });
+
         return view;
     }
 

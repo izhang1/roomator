@@ -88,11 +88,7 @@ public class navi extends AppCompatActivity
         android.app.FragmentManager fragmentManager = getFragmentManager(); // For AppCompat use getSupportFragmentManager
         switch (position) {
             case 0:
-                if(hasGroup){
-                    fragment = new mainFrag();
-                }else{
-                    fragment = new chores();
-                }
+                fragment = new mainFrag();
                 break;
             case 1:
                 fragment = new mainFrag();
