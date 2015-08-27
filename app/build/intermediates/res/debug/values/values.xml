@@ -257,6 +257,8 @@
         <!--   theme UI controls like checkboxes and text fields -->
         <item name="android:colorAccent">@color/accent</item>
 
+        <item name="android:colorPressedHighlight">@color/accent</item>
+
     </style>
     <!-- From: file:/Users/izhang/Desktop/Programming%20Work/roomator/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
     <eat-comment/>

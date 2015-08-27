@@ -60,6 +60,8 @@ public class NavigationDrawerFragment extends Fragment {
     private int mCurrentSelectedPosition = 0;
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
+    private int save = -1;
+
 
     public NavigationDrawerFragment() {
     }
@@ -97,6 +99,15 @@ public class NavigationDrawerFragment extends Fragment {
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                parent.getChildAt(position).setBackgroundColor(
+                        Color.parseColor("#336699"));
+
+                if (save != -1 && save != position) {
+                    parent.getChildAt(save).setBackgroundColor(
+                            Color.parseColor("#999999"));
+                }
+
+                save = position;
                 selectItem(position);
             }
         });

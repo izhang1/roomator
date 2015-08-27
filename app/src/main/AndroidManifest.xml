@@ -12,15 +12,21 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".main"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            >
         </activity>
         <activity
             android:name=".login"
-            android:label="@string/title_activity_login" >
+            android:label="@string/title_activity_login"
+            android:screenOrientation="portrait"
+            >
         </activity>
         <activity
             android:name=".loading"
-            android:label="@string/title_activity_loading" >
+            android:label="Roomator"
+            android:screenOrientation="portrait"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,21 +35,29 @@
         </activity>
         <activity
             android:name=".register"
-            android:label="@string/title_activity_register" >
+            android:label="@string/title_activity_register"
+            android:screenOrientation="portrait"
+            >
         </activity>
         <activity
             android:name=".mainFrag_group"
-            android:label="@string/title_activity_group" >
+            android:label="@string/title_activity_group"
+            android:screenOrientation="portrait"
+            >
         </activity>
         <activity
             android:name=".navi"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            >
         </activity>
         <activity
             android:name=".newGroup"
             android:label="@string/title_activity_new_group"
             android:hardwareAccelerated="false"
             android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait"
+
             >
         </activity>
     </application>
