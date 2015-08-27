@@ -92,6 +92,7 @@ public class mainFrag extends Fragment {
                     Toast.makeText(getActivity(), "Welcome to " + groupName, Toast.LENGTH_LONG).show();
 
                     // Setup stats counter
+                    // todo: Need to setup a elegant way to show stats. Either using a card of some sort.
 
 
                 }else{

@@ -256,6 +256,7 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
     @Override
+    //todo: Add the ability to add a group if the user does not have a group. Otherwise this should not bere here on the main page.
     public boolean onOptionsItemSelected(MenuItem item) {
         if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
