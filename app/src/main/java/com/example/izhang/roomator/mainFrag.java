@@ -8,7 +8,9 @@ import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +18,8 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
+
+import java.util.ArrayList;
 
 
 /**
@@ -77,6 +81,8 @@ public class mainFrag extends Fragment {
         final String android_id = Settings.Secure.getString(getActivity().getContentResolver(),
                 Settings.Secure.ANDROID_ID);
 
+        final ListView mainFragList = (ListView) view.findViewById(R.id.mainFragList);
+
         myFirebaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -93,7 +99,13 @@ public class mainFrag extends Fragment {
 
                     // Setup stats counter
                     // todo: Need to setup a elegant way to show stats. Either using a card of some sort.
-
+                    ArrayList<String> myStringArray1 = new ArrayList<String>();
+                    myStringArray1.add("Chores             20");
+                    myStringArray1.add("Groceries          11");
+                    myStringArray1.add("Bills               2");
+                    ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(),
+                            android.R.layout.simple_list_item_1, myStringArray1);
+                    mainFragList.setAdapter(adapter);
 
                 }else{
                     Toast.makeText(getActivity(), "Please join a group!", Toast.LENGTH_LONG).show();

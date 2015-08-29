@@ -3,6 +3,6 @@
     android:layout_height="match_parent" android:choiceMode="singleChoice"
     android:divider="@color/accent" android:dividerHeight="0dp"
     android:background="@drawable/listselect"
-    android:drawSelectorOnTop="false"
+    android:drawSelectorOnTop="true"
     tools:context="com.example.izhang.roomator.NavigationDrawerFragment" />
 <!-- From: file:/Users/izhang/Desktop/Programming%20Work/roomator/app/src/main/res/layout/fragment_navigation_drawer.xml -->

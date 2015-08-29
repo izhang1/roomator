@@ -27,10 +27,13 @@
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/listView"
+            android:id="@+id/mainFragList"
             android:layout_below="@+id/mainTitleView"
             android:layout_centerHorizontal="true"
-            android:elevation="6dp" />
+            android:elevation="6dp"
+            android:background="@color/primary"
+            android:layout_marginLeft="20dp"
+            android:drawSelectorOnTop="false" />
 
     </RelativeLayout>
 </FrameLayout>
