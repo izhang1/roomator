@@ -13,6 +13,8 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 
+//TODO: Added new button to add tasks
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -77,7 +79,6 @@ public class chores extends Fragment {
 
         choresList = (ListView) view.findViewById(R.id.choresList);
         // Setup stats counter
-        // todo: Need to setup a elegant way to show stats. Either using a card of some sort.
         ArrayList<String> myStringArray = new ArrayList<String>();
         myStringArray.add("Go and hangout");
         myStringArray.add("Do something else");
