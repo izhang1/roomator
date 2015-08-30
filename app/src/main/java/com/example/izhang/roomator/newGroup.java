@@ -1,6 +1,7 @@
 package com.example.izhang.roomator;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,6 +39,9 @@ public class newGroup extends Activity {
         // Get android_id
         final String android_id = Settings.Secure.getString(getApplicationContext().getContentResolver(),
                 Settings.Secure.ANDROID_ID);
+
+        // First Int
+        final int first = 1;
 
         final Button joinGroupButton = (Button) this.findViewById(R.id.joinGroupButton);
         final Button newGroupButton = (Button) this.findViewById(R.id.addGroupButton);
@@ -86,9 +90,28 @@ public class newGroup extends Activity {
                             newId = idGen();
                         }
 
-                        myFirebaseRef.child("group").child(Integer.toString(newId)).child("name").setValue(groupName);
+                        // Reference for that specific group
+                        Firebase groupRef = myFirebaseRef.child("group").child(Integer.toString(newId));
+
+                        groupRef.child("name").setValue(groupName);
+                        groupRef.child("amtOfPeople").setValue(first);
+                        groupRef.child("bills").child(Integer.toString(first)).child("amount").setValue(first);
+                        groupRef.child("bills").child(Integer.toString(first)).child("costPerPerson").setValue(first);
+                        groupRef.child("bills").child(Integer.toString(first)).child("description").setValue("First Bill");
+                        groupRef.child("chores").child("todo").child(Integer.toString(first)).child("createdby").setValue("Roomator");
+                        groupRef.child("chores").child("todo").child(Integer.toString(first)).child("dateCreated").setValue("date");
+                        groupRef.child("chores").child("todo").child(Integer.toString(first)).child("title").setValue("Roomator Chores!");
+                        groupRef.child("chores").child("done").child(Integer.toString(first)).child("createdby").setValue("Roomator");
+                        groupRef.child("chores").child("done").child(Integer.toString(first)).child("dateCreated").setValue("date");
+                        groupRef.child("chores").child("done").child(Integer.toString(first)).child("title").setValue("Roomator Chores!");
+                        groupRef.child("name").setValue(groupName);
+
                         String userId = dataSnapshot.child("didlogin").child(android_id).getValue().toString();
                         myFirebaseRef.child("account").child(userId).child("group").setValue(newId);
+
+                        Intent naviIntent = new Intent(getApplicationContext(), navi.class);
+                        startActivity(naviIntent);
+                        finish();
 
                     }
 
