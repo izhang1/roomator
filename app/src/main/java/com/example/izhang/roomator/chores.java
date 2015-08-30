@@ -36,6 +36,7 @@ public class chores extends Fragment {
     View view;
 
     ListView choresList;
+    ListView doneChoresList;
 
 
     private OnFragmentInteractionListener mListener;
@@ -78,6 +79,8 @@ public class chores extends Fragment {
         view = inflater.inflate(R.layout.fragment_chores, container, false);
 
         choresList = (ListView) view.findViewById(R.id.choresList);
+        doneChoresList = (ListView) view.findViewById(R.id.doneChoresList);
+
         // Setup stats counter
         ArrayList<String> myStringArray = new ArrayList<String>();
         myStringArray.add("Go and hangout");
@@ -93,6 +96,7 @@ public class chores extends Fragment {
         ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_list_item_1, myStringArray);
         choresList.setAdapter(adapter);
+        doneChoresList.setAdapter(adapter);
 
         return view;
     }
