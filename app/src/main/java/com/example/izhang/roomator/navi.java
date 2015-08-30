@@ -91,7 +91,7 @@ public class navi extends AppCompatActivity
                 fragment = new mainFrag();
                 break;
             case 1:
-                fragment = new mainFrag();
+                fragment = new chores();
                 break;
             default: fragment = new mainFrag();
 
