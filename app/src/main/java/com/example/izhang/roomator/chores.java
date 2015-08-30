@@ -7,6 +7,10 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 
 /**
@@ -26,6 +30,11 @@ public class chores extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    View view;
+
+    ListView choresList;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -64,7 +73,27 @@ public class chores extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_chores, container, false);
+        view = inflater.inflate(R.layout.fragment_chores, container, false);
+
+        choresList = (ListView) view.findViewById(R.id.choresList);
+        // Setup stats counter
+        // todo: Need to setup a elegant way to show stats. Either using a card of some sort.
+        ArrayList<String> myStringArray = new ArrayList<String>();
+        myStringArray.add("Go and hangout");
+        myStringArray.add("Do something else");
+        myStringArray.add("Go and pay bills");
+        myStringArray.add("Wash Dishes");
+        myStringArray.add("Clean living room");
+        myStringArray.add("Purchase more toiler paper");
+        myStringArray.add("Wash sinks");
+        myStringArray.add("Do another chores");
+        myStringArray.add("Code some thangs");
+
+        ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_list_item_1, myStringArray);
+        choresList.setAdapter(adapter);
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
