@@ -86,12 +86,7 @@ public class chores extends Fragment {
         myStringArray.add("Go and hangout");
         myStringArray.add("Do something else");
         myStringArray.add("Go and pay bills");
-        myStringArray.add("Wash Dishes");
-        myStringArray.add("Clean living room");
-        myStringArray.add("Purchase more toiler paper");
-        myStringArray.add("Wash sinks");
-        myStringArray.add("Do another chores");
-        myStringArray.add("Code some thangs");
+
 
         ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_list_item_1, myStringArray);
