@@ -39,7 +39,6 @@ public class navi extends AppCompatActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
-
     boolean hasGroup;
 
     @Override
