@@ -111,6 +111,9 @@ public class navi extends AppCompatActivity
             case 3:
                 mTitle = getString(R.string.title_section3);
                 break;
+            case 4:
+                mTitle = "Groceries";
+                break;
         }
     }
 
