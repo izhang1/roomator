@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.provider.Settings;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -34,6 +40,7 @@ public class chores extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static String account_id = "";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -73,8 +80,7 @@ public class chores extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            account_id = getArguments().getString("account_id");
         }
     }
 
@@ -87,6 +93,13 @@ public class chores extends Fragment {
 
         Button newChore = (Button) view.findViewById(R.id.choresButton);
 
+
+        //Setup Firebase
+        Firebase.setAndroidContext(getActivity());
+        final Firebase myFirebaseRef = new Firebase("https://roomator.firebaseio.com/");
+
+
+
         // Setup stats counter
         ArrayList<String> myStringArray = new ArrayList<String>();
         myStringArray.add("Go and hangout");
@@ -94,11 +107,20 @@ public class chores extends Fragment {
         myStringArray.add("Go and pay bills");
 
 
-
         ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_list_item_1, myStringArray);
         choresList.setAdapter(adapter);
 
+        myFirebaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
         newChore.setOnClickListener(new View.OnClickListener() {
             String m_Text;
             @Override

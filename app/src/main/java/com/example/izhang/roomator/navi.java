@@ -40,6 +40,7 @@ public class navi extends AppCompatActivity
      */
     private CharSequence mTitle;
     boolean hasGroup;
+    String account_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +58,7 @@ public class navi extends AppCompatActivity
         myFirebaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String account_id = dataSnapshot.child("didlogin").child(android_id).getValue().toString();
+                account_id = dataSnapshot.child("didlogin").child(android_id).getValue().toString();
                 if(dataSnapshot.child("account").child(account_id).hasChild("group")){
                     hasGroup = true;
                 }else{
@@ -91,6 +92,9 @@ public class navi extends AppCompatActivity
                 break;
             case 1:
                 fragment = new chores();
+                Bundle args = new Bundle();
+                args.putString("account_id", account_id);
+                fragment.setArguments(args);
                 break;
             default: fragment = new mainFrag();
 
