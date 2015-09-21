@@ -1,14 +1,20 @@
 package com.example.izhang.roomator;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -73,12 +79,13 @@ public class chores extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_chores, container, false);
-
         choresList = (ListView) view.findViewById(R.id.choresList);
+
+        Button newChore = (Button) view.findViewById(R.id.choresButton);
 
         // Setup stats counter
         ArrayList<String> myStringArray = new ArrayList<String>();
@@ -87,9 +94,44 @@ public class chores extends Fragment {
         myStringArray.add("Go and pay bills");
 
 
+
         ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_list_item_1, myStringArray);
         choresList.setAdapter(adapter);
+
+        newChore.setOnClickListener(new View.OnClickListener() {
+            String m_Text;
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Add New Chore");
+
+                // Set up the input
+                final EditText input = new EditText(getActivity());
+                // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                input.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                input.setHint("Wash The Dishes");
+                builder.setView(input);
+
+                        // Set up the buttons
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        m_Text = input.getText().toString();
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder.show();
+            }
+        });
+
+
         return view;
     }
 

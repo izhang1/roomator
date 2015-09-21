@@ -27,12 +27,12 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Button"
-            android:id="@+id/button"
+            android:id="@+id/choresButton"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
             android:layout_alignEnd="@+id/choresList"
-            android:elevation="6dp" />
+            android:elevation="6dp"
+            android:text="New Chore" />
 
     </RelativeLayout>
 

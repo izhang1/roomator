@@ -1558,10 +1558,10 @@ containing a value of this type.
         public static final int alertTitle=0x7f0c0030;
         public static final int always=0x7f0c0016;
         public static final int beginning=0x7f0c0013;
-        public static final int button=0x7f0c0066;
         public static final int buttonPanel=0x7f0c0036;
         public static final int cancel_action=0x7f0c006b;
         public static final int checkbox=0x7f0c0038;
+        public static final int choresButton=0x7f0c0066;
         public static final int choresList=0x7f0c0065;
         public static final int chronometer=0x7f0c0071;
         public static final int collapseActionView=0x7f0c0017;

@@ -441,10 +441,10 @@ int id addGroupButton 0x7f0c005e
 int id alertTitle 0x7f0c0030
 int id always 0x7f0c0016
 int id beginning 0x7f0c0013
-int id button 0x7f0c0066
 int id buttonPanel 0x7f0c0036
 int id cancel_action 0x7f0c006b
 int id checkbox 0x7f0c0038
+int id choresButton 0x7f0c0066
 int id choresList 0x7f0c0065
 int id chronometer 0x7f0c0071
 int id collapseActionView 0x7f0c0017

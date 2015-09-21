@@ -31,7 +31,6 @@
             android:layout_below="@+id/mainTitleView"
             android:layout_centerHorizontal="true"
             android:elevation="6dp"
-            android:background="@color/primary_dark"
             android:layout_marginLeft="20dp"
             android:drawSelectorOnTop="false"
             android:dividerHeight="1.5dp"
