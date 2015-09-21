@@ -23,6 +23,7 @@ import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 //TODO: Added new button to add tasks
@@ -99,9 +100,8 @@ public class chores extends Fragment {
         final Firebase myFirebaseRef = new Firebase("https://roomator.firebaseio.com/");
 
 
-
         // Setup stats counter
-        ArrayList<String> myStringArray = new ArrayList<String>();
+        final ArrayList<String> myStringArray = new ArrayList<String>();
         myStringArray.add("Go and hangout");
         myStringArray.add("Do something else");
         myStringArray.add("Go and pay bills");
@@ -111,9 +111,15 @@ public class chores extends Fragment {
                 android.R.layout.simple_list_item_1, myStringArray);
         choresList.setAdapter(adapter);
 
+        //TODO: Use account id to get groupID, use id of group to get chorelist and add them to adapter
         myFirebaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                String groupID = dataSnapshot.child("account").child(account_id).child("group").getKey();
+                Iterable<DataSnapshot> choreIter = dataSnapshot.child("group").child(groupID).child("todo").getChildren();
+                for(DataSnapshot d : choreIter){
+                    myStringArray.add(d.child("title").getKey());
+                }
             }
 
             @Override
