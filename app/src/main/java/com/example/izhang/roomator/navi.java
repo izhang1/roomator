@@ -28,7 +28,7 @@ import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
 public class navi extends AppCompatActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks, mainFrag.OnFragmentInteractionListener, chores.OnFragmentInteractionListener {
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks, mainFrag.OnFragmentInteractionListener, chores.OnFragmentInteractionListener, billing.OnFragmentInteractionListener {
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -96,6 +96,11 @@ public class navi extends AppCompatActivity
                 args.putString("account_id", account_id);
                 fragment.setArguments(args);
                 break;
+            case 2:
+
+            case 3:
+                fragment = new billing();
+                break;
             default: fragment = new mainFrag();
 
         }
@@ -116,7 +121,7 @@ public class navi extends AppCompatActivity
                 mTitle = getString(R.string.title_section3);
                 break;
             case 4:
-                mTitle = "Groceries";
+                mTitle = getString(R.string.title_section4);
                 break;
         }
     }
