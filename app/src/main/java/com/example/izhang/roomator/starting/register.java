@@ -5,7 +5,7 @@
 *  register.java: Allows a new user to register
 *
  */
-package com.example.izhang.roomator;
+package com.example.izhang.roomator.starting;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -21,6 +21,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.izhang.roomator.R;
+import com.example.izhang.roomator.navi;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;

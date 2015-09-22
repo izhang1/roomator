@@ -17,13 +17,13 @@
             >
         </activity>
         <activity
-            android:name=".login"
+            android:name=".starting.login"
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait"
             >
         </activity>
         <activity
-            android:name=".loading"
+            android:name=".starting.loading"
             android:label="Roomator"
             android:screenOrientation="portrait"
             >
@@ -34,14 +34,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".register"
+            android:name=".starting.register"
             android:label="@string/title_activity_register"
-            android:screenOrientation="portrait"
-            >
-        </activity>
-        <activity
-            android:name=".mainFrag_group"
-            android:label="@string/title_activity_group"
             android:screenOrientation="portrait"
             >
         </activity>
@@ -52,7 +46,7 @@
             >
         </activity>
         <activity
-            android:name=".newGroup"
+            android:name=".starting.newGroup"
             android:label="@string/title_activity_new_group"
             android:hardwareAccelerated="false"
             android:windowSoftInputMode="adjustPan"

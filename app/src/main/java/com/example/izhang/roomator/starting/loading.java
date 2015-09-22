@@ -5,7 +5,7 @@
 *  loading.java: Loading screen before getting to the application itself
 *
  */
-package com.example.izhang.roomator;
+package com.example.izhang.roomator.starting;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,16 +13,15 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.provider.Settings;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.izhang.roomator.R;
+import com.example.izhang.roomator.navi;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
