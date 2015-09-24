@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.app.Fragment;
 import android.provider.Settings;
 import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -115,10 +116,13 @@ public class chores extends Fragment {
         myFirebaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String groupID = dataSnapshot.child("account").child(account_id).child("group").getKey();
-                Iterable<DataSnapshot> choreIter = dataSnapshot.child("group").child(groupID).child("todo").getChildren();
+
+                String groupID = dataSnapshot.child("account").child(account_id).child("group").getValue().toString();
+                Iterable<DataSnapshot> choreIter = dataSnapshot.child("group").child(groupID).child("chores").child("todo").getChildren();
+                Log.d("Chores", "groupID "+ groupID + " Account id:"+ account_id +"  :Before forLoop");
                 for(DataSnapshot d : choreIter){
-                    myStringArray.add(d.child("title").getKey());
+                    myStringArray.add(d.child("title").getValue().toString());
+                    Log.d("Chores", groupID);
                 }
             }
 
