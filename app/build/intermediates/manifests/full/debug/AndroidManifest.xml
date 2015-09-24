@@ -22,12 +22,12 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.example.izhang.roomator.login"
+            android:name="com.example.izhang.roomator.starting.login"
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.example.izhang.roomator.loading"
+            android:name="com.example.izhang.roomator.starting.loading"
             android:label="Roomator"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -37,13 +37,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.izhang.roomator.register"
+            android:name="com.example.izhang.roomator.starting.register"
             android:label="@string/title_activity_register"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name="com.example.izhang.roomator.mainFrag_group"
-            android:label="@string/title_activity_group"
             android:screenOrientation="portrait" >
         </activity>
         <activity
@@ -52,7 +47,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.example.izhang.roomator.newGroup"
+            android:name="com.example.izhang.roomator.starting.newGroup"
             android:hardwareAccelerated="false"
             android:label="@string/title_activity_new_group"
             android:screenOrientation="portrait"
