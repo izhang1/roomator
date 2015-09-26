@@ -93,7 +93,7 @@ public class chores extends Fragment {
         view = inflater.inflate(R.layout.fragment_chores, container, false);
         choresList = (ListView) view.findViewById(R.id.choresList);
 
-        Button newChore = (Button) view.findViewById(R.id.choresButton);
+        final Button newChore = (Button) view.findViewById(R.id.choresButton);
 
 
         //Setup Firebase
@@ -116,14 +116,52 @@ public class chores extends Fragment {
         myFirebaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
                 String groupID = dataSnapshot.child("account").child(account_id).child("group").getValue().toString();
+                int choresCount = 1;
                 Iterable<DataSnapshot> choreIter = dataSnapshot.child("group").child(groupID).child("chores").child("todo").getChildren();
-                Log.d("Chores", "groupID "+ groupID + " Account id:"+ account_id +"  :Before forLoop");
-                for(DataSnapshot d : choreIter){
+                Log.d("Chores", "groupID " + groupID + " Account id:" + account_id + "  :Before forLoop");
+                for (DataSnapshot d : choreIter) {
                     myStringArray.add(d.child("title").getValue().toString());
-                    Log.d("Chores", groupID);
+                    choresCount++;
                 }
+
+                // Button to add a new chore to this group
+                newChore.setOnClickListener(new View.OnClickListener() {
+                    String m_Text;
+
+                    @Override
+                    public void onClick(View v) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                        builder.setTitle("Add New Chore");
+
+                        // Set up the input
+                        final EditText input = new EditText(getActivity());
+                        // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                        input.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                        input.setHint("Wash The Dishes");
+                        builder.setView(input);
+
+                        // Set up the buttons
+                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                m_Text = input.getText().toString();
+                                //TODO: Add this to the chores.todo with the person who created it "created by", "dateCreated" and "title"
+                                
+                            }
+                        });
+                        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+
+                        builder.show();
+                    }
+                });
+
+
             }
 
             @Override
@@ -131,37 +169,7 @@ public class chores extends Fragment {
 
             }
         });
-        newChore.setOnClickListener(new View.OnClickListener() {
-            String m_Text;
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("Add New Chore");
 
-                // Set up the input
-                final EditText input = new EditText(getActivity());
-                // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-                input.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                input.setHint("Wash The Dishes");
-                builder.setView(input);
-
-                        // Set up the buttons
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        m_Text = input.getText().toString();
-                    }
-                });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-
-                builder.show();
-            }
-        });
 
 
         return view;
