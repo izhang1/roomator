@@ -115,7 +115,7 @@ public class chores extends Fragment {
         //TODO: Use account id to get groupID, use id of group to get chorelist and add them to adapter
         myFirebaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(final DataSnapshot dataSnapshot) {
                 String groupID = dataSnapshot.child("account").child(account_id).child("group").getValue().toString();
                 int choresCount = 1;
                 Iterable<DataSnapshot> choreIter = dataSnapshot.child("group").child(groupID).child("chores").child("todo").getChildren();
@@ -147,7 +147,6 @@ public class chores extends Fragment {
                             public void onClick(DialogInterface dialog, int which) {
                                 m_Text = input.getText().toString();
                                 //TODO: Add this to the chores.todo with the person who created it "created by", "dateCreated" and "title"
-                                
                             }
                         });
                         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
