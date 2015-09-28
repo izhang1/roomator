@@ -12,10 +12,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.client.DataSnapshot;
@@ -96,32 +98,33 @@ public class chores extends Fragment {
 
         final Button newChore = (Button) view.findViewById(R.id.choresButton);
 
-
         //Setup Firebase
         Firebase.setAndroidContext(getActivity());
         final Firebase myFirebaseRef = new Firebase("https://roomator.firebaseio.com/");
 
 
-        // Setup stats counter
-        final ArrayList<String> myStringArray = new ArrayList<String>();
-        myStringArray.add("Go and hangout");
-        myStringArray.add("Do something else");
-        myStringArray.add("Go and pay bills");
 
 
-        ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1, myStringArray);
-        choresList.setAdapter(adapter);
-
-        myFirebaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        myFirebaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
+                // Setup stats counter
+                final ArrayList<String> myStringArray = new ArrayList<String>();
+
+
+                final ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(),
+                        android.R.layout.simple_list_item_1, myStringArray);
+                choresList.setAdapter(adapter);
+
+
                 final String groupID = dataSnapshot.child("account").child(account_id).child("group").getValue().toString();
                 choresCount = 1;
                 final Iterable<DataSnapshot> choreIter = dataSnapshot.child("group").child(groupID).child("chores").child("todo").getChildren();
                 Log.d("Chores", "groupID " + groupID + " Account id:" + account_id + "  :Before forLoop");
                 for (DataSnapshot d : choreIter) {
-                    myStringArray.add(d.child("title").getValue().toString());
+                    if(d.child("done").getValue() == false) {
+                        myStringArray.add(d.child("title").getValue().toString());
+                    }
                     choresCount++;
                 }
 
@@ -148,6 +151,42 @@ public class chores extends Fragment {
                                 m_Text = input.getText().toString();
                                 myFirebaseRef.child("group").child(groupID).child("chores").child("todo").child(Integer.toString(choresCount)).child("title").setValue(m_Text);
                                 myFirebaseRef.child("group").child(groupID).child("chores").child("todo").child(Integer.toString(choresCount)).child("createdBy").setValue(account_id);
+                                myFirebaseRef.child("group").child(groupID).child("chores").child("todo").child(Integer.toString(choresCount)).child("done").setValue(false);
+
+                                adapter.setNotifyOnChange(true);
+                            }
+                        });
+                        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+
+                        builder.show();
+                    }
+                });
+
+
+
+                choresList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        final String item  = parent.getItemAtPosition(position).toString();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                        builder.setTitle("Chore: " + item);
+
+                        // Set up the buttons
+                        builder.setPositiveButton("Completed?", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                final Iterable<DataSnapshot> choreIter2 = dataSnapshot.child("group").child(groupID).child("chores").child("todo").getChildren();
+                                for (DataSnapshot d : choreIter2) {
+                                    if(d.child("title").getValue() != null && d.child("title").getValue().toString().equals(item)) {
+                                        Firebase childRef = d.getRef();
+                                        childRef.child("done").setValue(true);
+                                    }
+                                }
                             }
                         });
                         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -197,6 +236,8 @@ public class chores extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
+
 
     /**
      * This interface must be implemented by activities that contain this
