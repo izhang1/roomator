@@ -34,7 +34,15 @@
             android:elevation="6dp"
             android:text="New Chore" />
 
+
+
     </RelativeLayout>
+    
+    <!-- TODO: Update blank fragment layout -->
+    <android.support.design.widget.FloatingActionButton android:id="@+id/addChore"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom" android:layout_margin="16dp"
+        android:src="@android:drawable/ic_menu_add" />
 
 </FrameLayout>
 <!-- From: file:/Users/izhang/Desktop/Programming%20Work/roomator/app/src/main/res/layout/fragment_chores.xml -->

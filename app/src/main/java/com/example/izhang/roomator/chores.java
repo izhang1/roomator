@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.provider.Settings;
+import android.support.design.widget.FloatingActionButton;
 import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -96,12 +97,14 @@ public class chores extends Fragment {
         view = inflater.inflate(R.layout.fragment_chores, container, false);
         choresList = (ListView) view.findViewById(R.id.choresList);
 
-        final Button newChore = (Button) view.findViewById(R.id.choresButton);
+       // final Button newChore = (Button) view.findViewById(R.id.choresButton);
 
         //Setup Firebase
         Firebase.setAndroidContext(getActivity());
         final Firebase myFirebaseRef = new Firebase("https://roomator.firebaseio.com/");
 
+        final FloatingActionButton newChore = (FloatingActionButton) view.findViewById(R.id.addChore);
+        newChore.setBackgroundTintList(getResources().getColorStateList(R.color.material_blue_grey_800));
 
 
 
