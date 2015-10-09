@@ -71,6 +71,7 @@ public class billing extends Fragment {
         view = inflater.inflate(R.layout.fragment_billing, container, false);
 
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        fab.setBackgroundTintList(getResources().getColorStateList(R.color.material_blue_grey_800));
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
