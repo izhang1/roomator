@@ -97,8 +97,6 @@ public class navi extends AppCompatActivity
                 fragment.setArguments(args);
                 break;
             case 2:
-
-            case 3:
                 fragment = new billing();
                 break;
             default: fragment = new mainFrag();
