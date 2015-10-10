@@ -2027,6 +2027,7 @@ containing a value of this type.
         public static final int alertTitle=0x7f0c0047;
         public static final int always=0x7f0c002b;
         public static final int beginning=0x7f0c0029;
+        public static final int billList=0x7f0c007b;
         public static final int bottom=0x7f0c001a;
         public static final int buttonPanel=0x7f0c004d;
         public static final int cancel_action=0x7f0c0085;
@@ -2034,8 +2035,7 @@ containing a value of this type.
         public static final int center_horizontal=0x7f0c001c;
         public static final int center_vertical=0x7f0c001d;
         public static final int checkbox=0x7f0c004f;
-        public static final int choresButton=0x7f0c007d;
-        public static final int choresList=0x7f0c007c;
+        public static final int choresList=0x7f0c007d;
         public static final int chronometer=0x7f0c008b;
         public static final int clip_horizontal=0x7f0c001e;
         public static final int clip_vertical=0x7f0c001f;
@@ -2060,7 +2060,7 @@ containing a value of this type.
         public static final int exitUntilCollapsed=0x7f0c0016;
         public static final int expand_activities_button=0x7f0c003e;
         public static final int expanded_menu=0x7f0c004e;
-        public static final int fab=0x7f0c007b;
+        public static final int fab=0x7f0c007c;
         public static final int fill=0x7f0c0021;
         public static final int fill_horizontal=0x7f0c0022;
         public static final int fill_vertical=0x7f0c0023;

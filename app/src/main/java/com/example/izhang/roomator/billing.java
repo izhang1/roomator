@@ -1,14 +1,23 @@
 package com.example.izhang.roomator;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.design.widget.FloatingActionButton;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 
 /**
@@ -29,6 +38,8 @@ public class billing extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    // Global variables for fragment view
+    ListView billList;
     View view;
 
     private OnFragmentInteractionListener mListener;
@@ -69,15 +80,73 @@ public class billing extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_billing, container, false);
+        billList = (ListView) view.findViewById(R.id.billList);
+
+        // Create list of bills for user
+        final ArrayList<String> billings = new ArrayList<String>();
+
+        final ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_list_item_1, billings);
+        billList.setAdapter(adapter);
 
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
         fab.setBackgroundTintList(getResources().getColorStateList(R.color.material_blue_grey_800));
+
+        // Prompts user for input to record the cost per person and description
         fab.setOnClickListener(new View.OnClickListener() {
+            String description;
+            String cost;
+
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(),"Ello Govna",Toast.LENGTH_LONG).show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Add New Bill");
+
+                LinearLayout layout = new LinearLayout(view.getContext());
+                layout.setOrientation(LinearLayout.VERTICAL);
+
+                // Set up the input for description
+                final EditText descriptionInput = new EditText(getActivity());
+                // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                descriptionInput.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                descriptionInput.setHint("Cable Internet");
+                layout.addView(descriptionInput);
+
+                // Set up the input for per person billing
+                final EditText costInput = new EditText(getActivity());
+                // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                costInput.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+                costInput.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                costInput.setHint("15.00");
+                layout.addView(costInput);
+
+                builder.setView(layout);
+
+
+
+                // Set up the buttons
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        description = descriptionInput.getText().toString();
+                        cost = costInput.getText().toString();
+
+                        Toast.makeText(getActivity(), "Description: " + description + "  CostPerPerson: " + cost, Toast.LENGTH_LONG).show();
+                        //adapter.setNotifyOnChange(true);
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder.show();
             }
         });
+
+
 
         return view;
     }
