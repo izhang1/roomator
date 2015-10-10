@@ -11,7 +11,7 @@
 
         <ListView
             android:layout_width="wrap_content"
-            android:layout_height="400dp"
+            android:layout_height="match_parent"
             android:id="@+id/choresList"
             android:layout_gravity="center"
             android:layout_marginLeft="6dp"
