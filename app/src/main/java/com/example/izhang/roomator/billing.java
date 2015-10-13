@@ -77,7 +77,7 @@ public class billing extends Fragment {
 
     // TODO: 10/10/15 : Complete the click of the FAB button by adding that data into the firebase after changes 
     // TODO: 10/10/15 : Add all the bills that this particular person needs to pay into the listview 
-    // TODO: 10/10/15 : Give the ability to pay for the listview and connect to venmo to do so 
+    // TODO: 10/13/15 : When the user clicks on listview item, confirm payment, and pay using venmo
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -91,6 +91,11 @@ public class billing extends Fragment {
         billings.add("Bill 1");
         billings.add("Bill 2");
         billings.add("Bill 3");
+        billings.add("Bill 4");
+        billings.add("Bill 5");
+        billings.add("Bill 6");
+        billings.add("Bill 7");
+
 
 
         final ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(),
