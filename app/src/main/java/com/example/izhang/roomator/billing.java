@@ -11,12 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.design.widget.FloatingActionButton;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 
 
@@ -88,9 +88,38 @@ public class billing extends Fragment {
         // Create list of bills for user
         final ArrayList<String> billings = new ArrayList<String>();
 
+        billings.add("Bill 1");
+        billings.add("Bill 2");
+        billings.add("Bill 3");
+
+
         final ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_list_item_1, billings);
         billList.setAdapter(adapter);
+
+        billList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                AlertDialog.Builder payBuilder = new AlertDialog.Builder(getActivity());
+                payBuilder.setTitle("Confirm to pay?");
+
+                payBuilder.setPositiveButton("Confirm Payment", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getActivity(), "You have just paid for this!", Toast.LENGTH_LONG);
+                    }
+                });
+                payBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                payBuilder.show();
+
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
         fab.setBackgroundTintList(getResources().getColorStateList(R.color.material_blue_grey_800));
@@ -124,8 +153,6 @@ public class billing extends Fragment {
                 layout.addView(costInput);
 
                 builder.setView(layout);
-
-
 
                 // Set up the buttons
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
