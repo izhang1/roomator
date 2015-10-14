@@ -19,15 +19,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 import java.util.ArrayList;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link billing.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link billing#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class billing extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -92,10 +83,6 @@ public class billing extends Fragment {
         billings.add("Bill 2");
         billings.add("Bill 3");
         billings.add("Bill 4");
-        billings.add("Bill 5");
-        billings.add("Bill 6");
-        billings.add("Bill 7");
-
 
 
         final ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(),
