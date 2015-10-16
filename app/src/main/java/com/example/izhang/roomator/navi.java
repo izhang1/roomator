@@ -86,18 +86,20 @@ public class navi extends AppCompatActivity
         // update the main content by replacing fragments
        android.app.Fragment fragment;
         android.app.FragmentManager fragmentManager = getFragmentManager(); // For AppCompat use getSupportFragmentManager
+        Bundle args = new Bundle();
+        args.putString("account_id", account_id);
+
         switch (position) {
             case 0:
                 fragment = new mainFrag();
                 break;
             case 1:
                 fragment = new chores();
-                Bundle args = new Bundle();
-                args.putString("account_id", account_id);
                 fragment.setArguments(args);
                 break;
             case 2:
                 fragment = new billing();
+                fragment.setArguments(args);
                 break;
             default: fragment = new mainFrag();
 

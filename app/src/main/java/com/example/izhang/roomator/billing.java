@@ -17,6 +17,12 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+
 import java.util.ArrayList;
 
 public class billing extends Fragment {
@@ -24,6 +30,7 @@ public class billing extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static String account_id = "";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -61,8 +68,7 @@ public class billing extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            account_id = getArguments().getString("account_id");
         }
     }
 
@@ -76,42 +82,60 @@ public class billing extends Fragment {
         view = inflater.inflate(R.layout.fragment_billing, container, false);
         billList = (ListView) view.findViewById(R.id.billList);
 
-        // Create list of bills for user
-        final ArrayList<String> billings = new ArrayList<String>();
+        //Setup Firebase
+        Firebase.setAndroidContext(getActivity());
+        final Firebase myFirebaseRef = new Firebase("https://roomator.firebaseio.com/");
 
-        billings.add("Bill 1");
-        billings.add("Bill 2");
-        billings.add("Bill 3");
-        billings.add("Bill 4");
-
-
-        final ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1, billings);
-        billList.setAdapter(adapter);
-
-        billList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        myFirebaseRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                AlertDialog.Builder payBuilder = new AlertDialog.Builder(getActivity());
-                payBuilder.setTitle("Confirm to pay?");
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Create list of bills for user
 
-                payBuilder.setPositiveButton("Confirm Payment", new DialogInterface.OnClickListener() {
+                final String groupID = dataSnapshot.child("account").child(account_id).child("group").getValue().toString();
+
+                final ArrayList<String> billings = new ArrayList<String>();
+
+                billings.add("Bill 1");
+                billings.add("Bill 2");
+                billings.add("Bill 3");
+                billings.add("Bill 4");
+
+                final ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(),
+                        android.R.layout.simple_list_item_1, billings);
+                billList.setAdapter(adapter);
+
+                billList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getActivity(), "You have just paid for this!", Toast.LENGTH_LONG);
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        AlertDialog.Builder payBuilder = new AlertDialog.Builder(getActivity());
+                        payBuilder.setTitle("Confirm to pay?");
+
+                        payBuilder.setPositiveButton("Confirm Payment", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(getActivity(), "You have just paid for this!", Toast.LENGTH_LONG);
+                            }
+                        });
+                        payBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+
+                        payBuilder.show();
+
                     }
                 });
-                payBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
 
-                payBuilder.show();
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
 
             }
         });
+
 
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
         fab.setBackgroundTintList(getResources().getColorStateList(R.color.material_blue_grey_800));
@@ -154,6 +178,8 @@ public class billing extends Fragment {
                         cost = costInput.getText().toString();
 
                         Toast.makeText(getActivity(), "Description: " + description + "  CostPerPerson: " + cost, Toast.LENGTH_LONG).show();
+
+
                         //adapter.setNotifyOnChange(true);
                     }
                 });

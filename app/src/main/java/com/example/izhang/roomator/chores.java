@@ -114,11 +114,9 @@ public class chores extends Fragment {
                 // Setup stats counter
                 final ArrayList<String> myStringArray = new ArrayList<String>();
 
-
                 final ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(),
                         android.R.layout.simple_list_item_1, myStringArray);
                 choresList.setAdapter(adapter);
-
 
                 final String groupID = dataSnapshot.child("account").child(account_id).child("group").getValue().toString();
                 choresCount = 1;
