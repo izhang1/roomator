@@ -95,8 +95,8 @@ public class billing extends Fragment {
                 final ArrayList<String> billings = new ArrayList<String>();
 
                 int choresCount = 1;
-                final Iterable<DataSnapshot> choreIter = dataSnapshot.child("group").child(groupID).child("bills").getChildren();
-                for (DataSnapshot d : choreIter) {
+                final Iterable<DataSnapshot> billIter = dataSnapshot.child("group").child(groupID).child("bills").getChildren();
+                for (DataSnapshot d : billIter) {
                     billings.add(d.child("description").getValue().toString());
                     choresCount++;
                 }
