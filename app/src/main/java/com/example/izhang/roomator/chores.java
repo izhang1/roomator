@@ -121,7 +121,6 @@ public class chores extends Fragment {
                 final String groupID = dataSnapshot.child("account").child(account_id).child("group").getValue().toString();
                 choresCount = 1;
                 final Iterable<DataSnapshot> choreIter = dataSnapshot.child("group").child(groupID).child("chores").child("todo").getChildren();
-                Log.d("Chores", "groupID " + groupID + " Account id:" + account_id + "  :Before forLoop");
                 for (DataSnapshot d : choreIter) {
                     if(d.child("done").getValue() == false) {
                         myStringArray.add(d.child("title").getValue().toString());

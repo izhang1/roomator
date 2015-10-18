@@ -92,13 +92,14 @@ public class billing extends Fragment {
                 // Create list of bills for user
 
                 final String groupID = dataSnapshot.child("account").child(account_id).child("group").getValue().toString();
-
                 final ArrayList<String> billings = new ArrayList<String>();
 
-                billings.add("Bill 1");
-                billings.add("Bill 2");
-                billings.add("Bill 3");
-                billings.add("Bill 4");
+                int choresCount = 1;
+                final Iterable<DataSnapshot> choreIter = dataSnapshot.child("group").child(groupID).child("bills").getChildren();
+                for (DataSnapshot d : choreIter) {
+                    billings.add(d.child("description").getValue().toString());
+                    choresCount++;
+                }
 
                 final ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(),
                         android.R.layout.simple_list_item_1, billings);
