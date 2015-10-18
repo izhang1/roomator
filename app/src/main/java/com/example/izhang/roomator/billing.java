@@ -92,16 +92,20 @@ public class billing extends Fragment {
                 // Create list of bills for user
 
                 final String groupID = dataSnapshot.child("account").child(account_id).child("group").getValue().toString();
-                final ArrayList<String> billings = new ArrayList<String>();
+                final ArrayList<bills> billings = new ArrayList<bills>();
 
                 int choresCount = 1;
                 final Iterable<DataSnapshot> billIter = dataSnapshot.child("group").child(groupID).child("bills").getChildren();
                 for (DataSnapshot d : billIter) {
-                    billings.add(d.child("description").getValue().toString());
+                    String ownerID = d.child("owner").getValue().toString();
+                    String cost = d.child("amount").getValue().toString();
+                    String description = d.child("description").getValue().toString();
+                    bills temp = new bills(10, description, 2);
+                    billings.add(temp);
                     choresCount++;
                 }
 
-                final ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(),
+                final ArrayAdapter adapter = new ArrayAdapter<bills>(getActivity(),
                         android.R.layout.simple_list_item_1, billings);
                 billList.setAdapter(adapter);
 
@@ -110,6 +114,7 @@ public class billing extends Fragment {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         AlertDialog.Builder payBuilder = new AlertDialog.Builder(getActivity());
                         payBuilder.setTitle("Confirm to pay?");
+                        payBuilder.setMessage(billings.get(position).getDesc());
 
                         payBuilder.setPositiveButton("Confirm Payment", new DialogInterface.OnClickListener() {
                             @Override
