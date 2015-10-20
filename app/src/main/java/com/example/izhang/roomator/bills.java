@@ -18,5 +18,11 @@ public class bills {
         return this.desc;
     }
 
+    @Override
+    public String toString(){
+        return this.desc;
+    }
+
+
 
 }
