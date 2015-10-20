@@ -125,7 +125,7 @@ public class billing extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 if(VenmoLibrary.isVenmoInstalled(getActivity())){
-                                    Intent venmoIntent = VenmoLibrary.openVenmoPayment("3007", "Roomator", "Theresa Nguyen", "2.00", "1", "pay");
+                                    Intent venmoIntent = VenmoLibrary.openVenmoPayment("0000", "Roomator", "Theresa Nguyen", "2.00", "1", "pay");
                                     startActivityForResult(venmoIntent, REQUEST_CODE_VENMO_APP_SWITCH);
                                 }
                                 Toast.makeText(getActivity(), "You have just paid for this!", Toast.LENGTH_LONG);
@@ -218,7 +218,7 @@ public class billing extends Fragment {
             if(resultCode == getActivity().RESULT_OK) {
                 String signedrequest = data.getStringExtra("signedrequest");
                 if(signedrequest != null) {
-                    VenmoLibrary.VenmoResponse response = (new VenmoLibrary()).validateVenmoPaymentResponse(signedrequest, "6DyRvtTdVLvZaDBnLERA3sFYKWY7xdTn");
+                    VenmoLibrary.VenmoResponse response = (new VenmoLibrary()).validateVenmoPaymentResponse(signedrequest, "----");
                     if(response.getSuccess().equals("1")) {
                         //Payment successful.  Use data from response object to display a success message
                         String note = response.getNote();
