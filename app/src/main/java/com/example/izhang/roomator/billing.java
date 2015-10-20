@@ -3,6 +3,7 @@ package com.example.izhang.roomator;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -16,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+
 import android.widget.Toast;
 
 import com.firebase.client.DataSnapshot;
@@ -39,6 +41,8 @@ public class billing extends Fragment {
     // Global variables for fragment view
     ListView billList;
     View view;
+
+    public int REQUEST_CODE_VENMO_APP_SWITCH;
 
     private OnFragmentInteractionListener mListener;
 
@@ -113,12 +117,17 @@ public class billing extends Fragment {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         AlertDialog.Builder payBuilder = new AlertDialog.Builder(getActivity());
+
                         payBuilder.setTitle("Confirm to pay?");
                         payBuilder.setMessage(billings.get(position).getDesc());
 
                         payBuilder.setPositiveButton("Confirm Payment", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                if(VenmoLibrary.isVenmoInstalled(getActivity())){
+                                    Intent venmoIntent = VenmoLibrary.openVenmoPayment("3007", "Roomator", "Theresa Nguyen", "2.00", "1", "pay");
+                                    startActivityForResult(venmoIntent, REQUEST_CODE_VENMO_APP_SWITCH);
+                                }
                                 Toast.makeText(getActivity(), "You have just paid for this!", Toast.LENGTH_LONG);
                             }
                         });
@@ -200,6 +209,31 @@ public class billing extends Fragment {
 
 
         return view;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        if(requestCode == REQUEST_CODE_VENMO_APP_SWITCH ){
+            if(resultCode == getActivity().RESULT_OK) {
+                String signedrequest = data.getStringExtra("signedrequest");
+                if(signedrequest != null) {
+                    VenmoLibrary.VenmoResponse response = (new VenmoLibrary()).validateVenmoPaymentResponse(signedrequest, "6DyRvtTdVLvZaDBnLERA3sFYKWY7xdTn");
+                    if(response.getSuccess().equals("1")) {
+                        //Payment successful.  Use data from response object to display a success message
+                        String note = response.getNote();
+                        String amount = response.getAmount();
+                    }
+                }
+                else {
+                    String error_message = data.getStringExtra("error_message");
+                    //An error ocurred.  Make sure to display the error_message to the user
+                }
+            }
+            else if(resultCode == getActivity().RESULT_CANCELED) {
+                //The user cancelled the payment
+            }
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event
