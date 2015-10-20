@@ -182,10 +182,7 @@ public class billing extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
                         description = descriptionInput.getText().toString();
                         cost = costInput.getText().toString();
-
                         Toast.makeText(getActivity(), "Description: " + description + "  CostPerPerson: " + cost, Toast.LENGTH_LONG).show();
-
-
                         //adapter.setNotifyOnChange(true);
                     }
                 });
