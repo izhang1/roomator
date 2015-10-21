@@ -1,4 +1,4 @@
-package com.example.izhang.roomator;
+package com.example.izhang.roomator.venmo;
 
 import android.content.ComponentName;
 import android.content.Context;

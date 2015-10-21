@@ -20,6 +20,8 @@ import android.widget.ListView;
 
 import android.widget.Toast;
 
+import com.example.izhang.roomator.venmo.VenmoLibrary;
+import com.example.izhang.roomator.venmo.venmoInfo;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -41,6 +43,8 @@ public class billing extends Fragment {
     // Global variables for fragment view
     ListView billList;
     View view;
+    private String venmo_appID = "";
+    private String venmo_secret = "";
 
     public int REQUEST_CODE_VENMO_APP_SWITCH;
 
@@ -74,6 +78,10 @@ public class billing extends Fragment {
         if (getArguments() != null) {
             account_id = getArguments().getString("account_id");
         }
+
+        venmoInfo vobj = new venmoInfo();
+        venmo_appID = vobj.getVenmoAppId();
+        venmo_secret = vobj.getVenmoAppSecret();
     }
 
     // TODO: 10/10/15 : Complete the click of the FAB button by adding that data into the firebase after changes 
@@ -85,6 +93,7 @@ public class billing extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_billing, container, false);
         billList = (ListView) view.findViewById(R.id.billList);
+
 
         //Setup Firebase
         Firebase.setAndroidContext(getActivity());
@@ -125,7 +134,7 @@ public class billing extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 if(VenmoLibrary.isVenmoInstalled(getActivity())){
-                                    Intent venmoIntent = VenmoLibrary.openVenmoPayment("0000", "Roomator", "Theresa Nguyen", "2.00", "1", "pay");
+                                    Intent venmoIntent = VenmoLibrary.openVenmoPayment(venmo_appID, "Roomator", "Theresa Nguyen", "2.00", "1", "pay");
                                     startActivityForResult(venmoIntent, REQUEST_CODE_VENMO_APP_SWITCH);
                                 }
                                 Toast.makeText(getActivity(), "You have just paid for this!", Toast.LENGTH_LONG);
@@ -218,7 +227,7 @@ public class billing extends Fragment {
             if(resultCode == getActivity().RESULT_OK) {
                 String signedrequest = data.getStringExtra("signedrequest");
                 if(signedrequest != null) {
-                    VenmoLibrary.VenmoResponse response = (new VenmoLibrary()).validateVenmoPaymentResponse(signedrequest, "----");
+                    VenmoLibrary.VenmoResponse response = (new VenmoLibrary()).validateVenmoPaymentResponse(signedrequest, venmo_secret);
                     if(response.getSuccess().equals("1")) {
                         //Payment successful.  Use data from response object to display a success message
                         String note = response.getNote();

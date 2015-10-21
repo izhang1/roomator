@@ -2020,7 +2020,7 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f0c0054;
         public static final int action_mode_bar_stub=0x7f0c0053;
         public static final int action_mode_close_button=0x7f0c003c;
-        public static final int action_settings=0x7f0c0091;
+        public static final int action_settings=0x7f0c0092;
         public static final int activity_chooser_view_content=0x7f0c003d;
         public static final int addChore=0x7f0c007e;
         public static final int addGroupButton=0x7f0c0074;
@@ -2148,6 +2148,7 @@ containing a value of this type.
         public static final int up=0x7f0c0008;
         public static final int useLogo=0x7f0c0013;
         public static final int usernameBox=0x7f0c0078;
+        public static final int venmo_wv=0x7f0c0091;
         public static final int view_offset_helper=0x7f0c0009;
         public static final int withText=0x7f0c002f;
         public static final int wrap_content=0x7f0c0034;
@@ -2219,6 +2220,7 @@ containing a value of this type.
         public static final int select_dialog_multichoice_material=0x7f040037;
         public static final int select_dialog_singlechoice_material=0x7f040038;
         public static final int support_simple_spinner_dropdown_item=0x7f040039;
+        public static final int venmo_webview=0x7f04003a;
     }
     public static final class menu {
         public static final int global=0x7f0d0000;

@@ -1,4 +1,4 @@
-package com.example.izhang.roomator;
+package com.example.izhang.roomator.venmo;
 
 /**
  * Created by izhang on 10/19/15.
@@ -12,6 +12,8 @@ import android.view.Window;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.RelativeLayout;
+
+import com.example.izhang.roomator.R;
 
 
 public class VenmoWebViewActivity extends Activity {

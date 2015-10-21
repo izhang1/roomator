@@ -527,7 +527,7 @@ int id action_menu_presenter 0x7f0c0003
 int id action_mode_bar 0x7f0c0054
 int id action_mode_bar_stub 0x7f0c0053
 int id action_mode_close_button 0x7f0c003c
-int id action_settings 0x7f0c0091
+int id action_settings 0x7f0c0092
 int id activity_chooser_view_content 0x7f0c003d
 int id addChore 0x7f0c007e
 int id addGroupButton 0x7f0c0074
@@ -655,6 +655,7 @@ int id topPanel 0x7f0c0045
 int id up 0x7f0c0008
 int id useLogo 0x7f0c0013
 int id usernameBox 0x7f0c0078
+int id venmo_wv 0x7f0c0091
 int id view_offset_helper 0x7f0c0009
 int id withText 0x7f0c002f
 int id wrap_content 0x7f0c0034
@@ -722,6 +723,7 @@ int layout select_dialog_item_material 0x7f040036
 int layout select_dialog_multichoice_material 0x7f040037
 int layout select_dialog_singlechoice_material 0x7f040038
 int layout support_simple_spinner_dropdown_item 0x7f040039
+int layout venmo_webview 0x7f04003a
 int menu global 0x7f0d0000
 int menu menu_loading 0x7f0d0001
 int menu menu_login 0x7f0d0002
