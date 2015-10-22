@@ -81,7 +81,7 @@ public class billing extends Fragment {
 
         venmoInfo vobj = new venmoInfo();
         venmo_appID = vobj.getVenmoAppId();
-        venmo_secret = vobj.getVenmoAppSecret();
+        venmo_secret = vobj.getVenmoSecret();
     }
 
     // TODO: 10/10/15 : Complete the click of the FAB button by adding that data into the firebase after changes 

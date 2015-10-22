@@ -94,7 +94,6 @@ public class register extends Activity {
                                 // Add the account to the login
                                 myFirebaseRef.child("account").child(strChildCount).child("email").setValue(emailBox.getText().toString());
                                 myFirebaseRef.child("account").child(strChildCount).child("username").setValue(usernameBox.getText().toString());
-
                                 Toast.makeText(getApplicationContext(), "Got to end of line!", Toast.LENGTH_LONG).show();
 
                                 String encryptedPass = "";
