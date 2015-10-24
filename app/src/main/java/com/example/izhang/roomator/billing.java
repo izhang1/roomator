@@ -99,8 +99,9 @@ public class billing extends Fragment {
                 for (DataSnapshot d : billIter) {
                     String ownerID = d.child("owner").getValue().toString();
                     String cost = d.child("amount").getValue().toString();
+                    int numCost = Integer.getInteger(cost);
                     String description = d.child("description").getValue().toString();
-                    bills temp = new bills(10, description, 2);
+                    bills temp = new bills(numCost, description, ownerID);
                     billings.add(temp);
                     choresCount++;
                 }

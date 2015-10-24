@@ -6,9 +6,9 @@ package com.example.izhang.roomator;
 public class bills {
     private int cost;
     private String desc;
-    private int ownerID;
+    private String ownerID;
 
-    public bills(int cost, String desc, int ownerID){
+    public bills(int cost, String desc, String ownerID){
         this.cost = cost;
         this.desc = desc;
         this.ownerID = ownerID;
