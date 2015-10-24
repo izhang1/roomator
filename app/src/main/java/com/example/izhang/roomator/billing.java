@@ -30,8 +30,7 @@ import com.firebase.client.ValueEventListener;
 import java.util.ArrayList;
 
 public class billing extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private static String account_id = "";
@@ -50,15 +49,6 @@ public class billing extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment billing.
-     */
-    // TODO: Rename and change types and number of parameters
     public static billing newInstance(String param1, String param2) {
         billing fragment = new billing();
         Bundle args = new Bundle();
@@ -84,9 +74,6 @@ public class billing extends Fragment {
         venmo_secret = vobj.getVenmoSecret();
     }
 
-    // TODO: 10/10/15 : Complete the click of the FAB button by adding that data into the firebase after changes 
-    // TODO: 10/10/15 : Add all the bills that this particular person needs to pay into the listview 
-    // TODO: 10/13/15 : When the user clicks on listview item, confirm payment, and pay using venmo
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -245,7 +232,6 @@ public class billing extends Fragment {
         }
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
