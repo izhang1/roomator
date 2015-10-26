@@ -35,7 +35,6 @@ public class billing extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private static String account_id = "";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -43,6 +42,8 @@ public class billing extends Fragment {
     View view;
     private String venmo_appID = "";
     private String venmo_secret = "";
+    private String groupID;
+    private String userFullName;
 
     public int REQUEST_CODE_VENMO_APP_SWITCH;
 
@@ -90,7 +91,7 @@ public class billing extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Create list of bills for user
 
-                final String groupID = dataSnapshot.child("account").child(account_id).child("group").getValue().toString();
+                groupID = dataSnapshot.child("account").child(account_id).child("group").getValue().toString();
                 final ArrayList<bills> billings = new ArrayList<bills>();
 
                 int choresCount = 1;
@@ -120,7 +121,7 @@ public class billing extends Fragment {
                         payBuilder.setPositiveButton("Confirm Payment", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                if(VenmoLibrary.isVenmoInstalled(getActivity())){
+                                if (VenmoLibrary.isVenmoInstalled(getActivity())) {
                                     Intent venmoIntent = VenmoLibrary.openVenmoPayment(venmo_appID, "Roomator", "Theresa Nguyen", "2.00", "1", "pay");
                                     startActivityForResult(venmoIntent, REQUEST_CODE_VENMO_APP_SWITCH);
                                 }
@@ -148,57 +149,81 @@ public class billing extends Fragment {
         });
 
 
-        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        final FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
         fab.setBackgroundTintList(getResources().getColorStateList(R.color.material_blue_grey_800));
 
-        // Prompts user for input to record the cost per person and description
-        fab.setOnClickListener(new View.OnClickListener() {
-            String description;
-            String cost;
+
+        myFirebaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                userFullName = dataSnapshot.child("account").child(account_id).child("fullname").getValue().toString();
+                final DataSnapshot billSnapShot = dataSnapshot.child("group").child(groupID).child("bills");
+                final long totalBill = billSnapShot.getChildrenCount();
+                final Firebase billRef = myFirebaseRef.child("group").child(groupID).child("bills");
+
+                // Prompts user for input to record the cost per person and description
+                fab.setOnClickListener(new View.OnClickListener() {
+                    String description;
+                    String cost;
+
+                    @Override
+                    public void onClick(View view) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                        builder.setTitle("Add New Bill");
+
+                        LinearLayout layout = new LinearLayout(view.getContext());
+                        layout.setOrientation(LinearLayout.VERTICAL);
+
+                        // Set up the input for description
+                        final EditText descriptionInput = new EditText(getActivity());
+                        // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                        descriptionInput.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                        descriptionInput.setHint("Cable Internet");
+                        layout.addView(descriptionInput);
+
+                        // Set up the input for per person billing
+                        final EditText costInput = new EditText(getActivity());
+                        // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                        costInput.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+                        costInput.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                        costInput.setHint("15.00");
+                        layout.addView(costInput);
+
+                        builder.setView(layout);
+
+                        // Set up the buttons
+                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                description = descriptionInput.getText().toString();
+                                cost = costInput.getText().toString();
+                                billRef.child("description").setValue(description);
+                                billRef.child("costPerPerson").setValue(cost);
+                                billRef.child("owner").setValue(account_id);
+                                billRef.child("ownerName").setValue(userFullName);
+
+                                Toast.makeText(getActivity(), "Description: " + description + "  CostPerPerson: " + cost, Toast.LENGTH_LONG).show();
+
+                                //adapter.setNotifyOnChange(true);
+                            }
+                        });
+                        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+
+                        builder.show();
+                    }
+                });
+
+            }
 
             @Override
-            public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("Add New Bill");
+            public void onCancelled(FirebaseError firebaseError) {
 
-                LinearLayout layout = new LinearLayout(view.getContext());
-                layout.setOrientation(LinearLayout.VERTICAL);
-
-                // Set up the input for description
-                final EditText descriptionInput = new EditText(getActivity());
-                // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-                descriptionInput.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                descriptionInput.setHint("Cable Internet");
-                layout.addView(descriptionInput);
-
-                // Set up the input for per person billing
-                final EditText costInput = new EditText(getActivity());
-                // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-                costInput.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
-                costInput.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                costInput.setHint("15.00");
-                layout.addView(costInput);
-
-                builder.setView(layout);
-
-                // Set up the buttons
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        description = descriptionInput.getText().toString();
-                        cost = costInput.getText().toString();
-                        Toast.makeText(getActivity(), "Description: " + description + "  CostPerPerson: " + cost, Toast.LENGTH_LONG).show();
-                        //adapter.setNotifyOnChange(true);
-                    }
-                });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-
-                builder.show();
             }
         });
 
@@ -223,7 +248,6 @@ public class billing extends Fragment {
                 }
                 else {
                     String error_message = data.getStringExtra("error_message");
-                    //An error ocurred.  Make sure to display the error_message to the user
                 }
             }
             else if(resultCode == getActivity().RESULT_CANCELED) {
