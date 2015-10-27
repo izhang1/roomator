@@ -1,5 +1,13 @@
 package com.example.izhang.roomator;
-
+/** Author: Ivan Zhang
+ *  Company: NovusApp.com
+ *  Application: Roomator
+ *
+ *  File: billing.java
+ * -- Fragment for users to interact with bills. Allow owners to create bills and set a price. Allow other members of the group to
+ * instantly pay the owner of the bill through Venmo.
+ *
+ */
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;

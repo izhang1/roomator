@@ -1,5 +1,12 @@
-package com.example.izhang.roomator;
+/** Author: Ivan Zhang
+ *  Company: NovusApp.com
+ *  Application: Roomator
+ *
+ *  File: chores.java
+ * -- Create and set chores for users in this group.
+ */
 
+package com.example.izhang.roomator;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -30,25 +37,14 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 
-//TODO: Added new button to add tasks
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link chores.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link chores#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class chores extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
+
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private static String account_id = "";
     private int choresCount;
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -60,15 +56,6 @@ public class chores extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment chores.
-     */
-    // TODO: Rename and change types and number of parameters
     public static chores newInstance(String param1, String param2) {
         chores fragment = new chores();
         Bundle args = new Bundle();
@@ -213,7 +200,6 @@ public class chores extends Fragment {
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -238,19 +224,7 @@ public class chores extends Fragment {
     }
 
 
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and names
         public void onFragmentInteraction(Uri uri);
     }
 

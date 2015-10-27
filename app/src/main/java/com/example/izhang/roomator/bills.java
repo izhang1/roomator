@@ -1,7 +1,11 @@
 package com.example.izhang.roomator;
 
-/**
- * Created by izhang on 10/18/15.
+/** Author: Ivan Zhang
+ *  Company: NovusApp.com
+ *  Application: Roomator
+ *
+ *  File: bills.java
+ * --Class that has the information for the bills including the owner account id, cost per person, description of the bill.
  */
 public class bills {
     private int cost;

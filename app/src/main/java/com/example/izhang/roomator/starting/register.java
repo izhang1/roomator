@@ -1,9 +1,9 @@
-/* Author: Ivan Zhang
+/** Author: Ivan Zhang
 *  Company: NovusApp.com
 *  Application: Roomator
 *
-*  register.java: Allows a new user to register
-*
+*  File: register.java
+* -- Allows a new user to register to start using Roomator
  */
 package com.example.izhang.roomator.starting;
 
