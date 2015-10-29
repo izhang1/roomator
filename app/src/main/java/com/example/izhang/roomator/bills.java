@@ -24,6 +24,10 @@ public class bills {
         return this.desc;
     }
 
+    public String getOwnerName(){return this.ownerName;}
+
+    public int getCost(){return this.cost;}
+
     @Override
     public String toString(){
         return this.desc;
