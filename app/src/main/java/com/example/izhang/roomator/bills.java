@@ -11,11 +11,13 @@ public class bills {
     private int cost;
     private String desc;
     private String ownerID;
+    private String ownerName;
 
-    public bills(int cost, String desc, String ownerID){
+    public bills(int cost, String desc, String ownerID, String ownerName){
         this.cost = cost;
         this.desc = desc;
         this.ownerID = ownerID;
+        this.ownerName = ownerName;
     }
 
     public String getDesc(){
