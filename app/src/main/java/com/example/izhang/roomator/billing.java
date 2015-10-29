@@ -107,10 +107,9 @@ public class billing extends Fragment {
                 for (DataSnapshot d : billIter) {
                     String ownerID = d.child("owner").getValue().toString();
                     String ownerName = d.child("ownerName").getValue().toString();
-                    String cost = d.child("amount").getValue().toString();
-                    int numCost = Integer.getInteger(cost);
+                    int cost = Integer.parseInt(d.child("amount").getValue().toString());
                     String description = d.child("description").getValue().toString();
-                    bills temp = new bills(numCost, description, ownerID, ownerName);
+                    bills temp = new bills(cost, description, ownerID, ownerName);
                     billings.add(temp);
                     choresCount++;
                 }
@@ -123,15 +122,16 @@ public class billing extends Fragment {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         AlertDialog.Builder payBuilder = new AlertDialog.Builder(getActivity());
-
+                        final String ownerName = billings.get(position).getOwnerName();
+                        final int cost = billings.get(position).getCost();
                         payBuilder.setTitle("Confirm to pay?");
-                        payBuilder.setMessage(billings.get(position).getDesc());
+                        payBuilder.setMessage(billings.get(position).getDesc() + "\nOwner: " + ownerName);
 
                         payBuilder.setPositiveButton("Confirm Payment", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 if (VenmoLibrary.isVenmoInstalled(getActivity())) {
-                                    Intent venmoIntent = VenmoLibrary.openVenmoPayment(venmo_appID, "Roomator", "Theresa Nguyen", "2.00", "1", "pay");
+                                    Intent venmoIntent = VenmoLibrary.openVenmoPayment(venmo_appID, "Roomator", ownerName, Integer.toString(cost), "1", "pay");
                                     startActivityForResult(venmoIntent, REQUEST_CODE_VENMO_APP_SWITCH);
                                 }
                                 Toast.makeText(getActivity(), "You have just paid for this!", Toast.LENGTH_LONG);
