@@ -141,6 +141,7 @@ public class billing extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.cancel();
+                                
                             }
                         });
 
