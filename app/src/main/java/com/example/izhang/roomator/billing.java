@@ -162,7 +162,6 @@ public class billing extends Fragment {
         final FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
         fab.setBackgroundTintList(getResources().getColorStateList(R.color.material_blue_grey_800));
 
-
         myFirebaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
